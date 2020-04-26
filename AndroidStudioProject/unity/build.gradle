@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 27
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+task copyAARToLibs(type: Copy) {
+    from('build/outputs/aar')
+    into('../../com.stansassets.unity.android/Plugins/Android/')
+    include(project.name + '-release.aar')
+    rename(project.name + '-release.aar', 'com.stansassets.unity.android.aar')
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'bundleRelease') {
+        task.finalizedBy 'copyAARToLibs'
+    }
+}
+dependencies {
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    compileOnly files('unity-classes.jar')
+}
