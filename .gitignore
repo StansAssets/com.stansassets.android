@@ -4,3 +4,5 @@ UnityProject/Temp
 UnityProject/Library
 *.csproj
 *.sln
+UnityProject/.idea
+UnityProject/obj

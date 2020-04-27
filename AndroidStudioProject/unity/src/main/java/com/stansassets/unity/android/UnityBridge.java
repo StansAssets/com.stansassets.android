@@ -12,14 +12,15 @@ public class UnityBridge {
     private static Gson sGson;
     private static Handler sUnityMainThreadHandler;
 
-    public static Activity currentActivity;
+    public static Activity getCurrentActivity() {
+        return UnityPlayer.currentActivity;
+    }
 
     public static void registerMessageHandler() {
         AndroidLogger.log("Message Handler registered");
 
         if(sUnityMainThreadHandler == null) {
             sUnityMainThreadHandler = new Handler();
-            currentActivity = UnityPlayer.currentActivity;
         }
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
