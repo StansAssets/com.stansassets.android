@@ -11,11 +11,9 @@ public class AndroidLogger {
     private static boolean sPrintError = true;
     private static boolean sEnableWTFLogging = true;
 
-    public static void log(String message) {
-        printLog(message, UnityLogType.Info);
-    }
-    public static void logWarning(String message) { printLog(message, UnityLogType.Warning); }
-    public static void logError(String message) { printLog(message, UnityLogType.Error); }
+    public static void log(String message) { printLog(message, UnityLogType.INFO); }
+    public static void logWarning(String message) { printLog(message, UnityLogType.WARNING); }
+    public static void logError(String message) { printLog(message, UnityLogType.ERROR); }
 
     public static void setLogLevel(boolean info, boolean warning, boolean error, boolean enableWTFLogging) {
         sPrintInfo = info;
@@ -23,21 +21,21 @@ public class AndroidLogger {
         sPrintError = error;
         sEnableWTFLogging = enableWTFLogging;
 
-        Log.wtf(TAG, "Log Level is set");
+        log("Log Level is set");
     }
 
     private static void printLog(String message, UnityLogType type) {
 
         boolean shouldPrint = true;
-        if (type == UnityLogType.Info && !sPrintInfo) {
+        if (type == UnityLogType.INFO && !sPrintInfo) {
             shouldPrint = false;
         }
 
-        if (type == UnityLogType.Warning && !sPrintWarning) {
+        if (type == UnityLogType.WARNING && !sPrintWarning) {
             shouldPrint = false;
         }
 
-        if (type == UnityLogType.Error && !sPrintError) {
+        if (type == UnityLogType.ERROR && !sPrintError) {
             shouldPrint = false;
         }
 
@@ -54,13 +52,13 @@ public class AndroidLogger {
         }
 
         switch (type) {
-            case Info:
+            case INFO:
                 Log.d(TAG, message);
                 break;
-            case Warning:
+            case WARNING:
                 Log.w(TAG, message);
                 break;
-            case Error:
+            case ERROR:
                 Log.e(TAG, message);
                 break;
         }

@@ -15,21 +15,14 @@ namespace StansAssets.Android
                 m_ResultHandler = resultHandler;
             }
 
-            public void OnResult(string json, bool forceMainThread)
+            public void OnResult(string json)
             {
                 AndroidLogger.LogJavaCallbackAsync(json);
                 var result = JsonUtility.FromJson<T>(json);
-                if (forceMainThread)
-                {
-                    MainThreadDispatcher.Enqueue(() =>
-                    {
-                        m_ResultHandler.Invoke(result);
-                    });
-                }
-                else
+                MainThreadDispatcher.Enqueue(() =>
                 {
                     m_ResultHandler.Invoke(result);
-                }
+                });
             }
         }
 

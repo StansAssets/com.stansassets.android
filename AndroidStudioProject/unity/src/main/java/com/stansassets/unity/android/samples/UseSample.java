@@ -14,34 +14,33 @@ public class UseSample {
     // Models should natch Unity code convention
 
     public class ButtonInfo {
-        public String m_Id;
-        public String m_Text;
-        public int m_Type;
+        String m_Id;
+        String m_Text;
+        int m_Type;
     }
 
     public class AlertDialogInfo {
-        public String m_Id;
-        public String m_Title;
-        public String m_Message;
-        public boolean m_Cancelable;
-        public int m_ThemeId;
+        String m_Title;
+        String m_Message;
+        boolean m_Cancelable;
+        int m_ThemeId;
 
-        public List<ButtonInfo> m_Buttons;
+        List<ButtonInfo> m_Buttons;
     }
 
     public static class AlertDialogCloseInfo {
-        public String m_ButtonId;
+        String m_ButtonId;
     }
 
     private static final int NEUTRAL  = 0;
     private static final int POSITIVE  = 1;
     private static final int NEGATIVE  = 2;
 
-    public static void Show(String json, final IUnityCallback callback) {
+    public static void show(String json, final IUnityCallback callback) {
 
         AlertDialogInfo info = UnityBridge.fromJson(json, AlertDialogInfo.class);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(UnityBridge.currentActivity, info.m_ThemeId));
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(UnityBridge.getCurrentActivity(), info.m_ThemeId));
         builder.setTitle(info.m_Title);
         builder.setMessage(info.m_Message);
         builder.setCancelable(info.m_Cancelable);
@@ -53,9 +52,7 @@ public class UseSample {
                     builder.setNeutralButton(button.m_Text, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                        AlertDialogCloseInfo result = new AlertDialogCloseInfo();
-                        result.m_ButtonId = button.m_Id;
-                        UnityBridge.sendCallback(callback, result);
+                            OnAlertButtonClick(button, callback);
                         }
                     });
                     break;
@@ -64,9 +61,7 @@ public class UseSample {
                     builder.setPositiveButton(button.m_Text, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                        AlertDialogCloseInfo result = new AlertDialogCloseInfo();
-                        result.m_ButtonId = button.m_Id;
-                        UnityBridge.sendCallback(callback, result);
+                            OnAlertButtonClick(button, callback);
                         }
                     });
                     break;
@@ -75,9 +70,7 @@ public class UseSample {
                     builder.setNegativeButton(button.m_Text, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                        AlertDialogCloseInfo result = new AlertDialogCloseInfo();
-                        result.m_ButtonId = button.m_Id;
-                        UnityBridge.sendCallback(callback, result);
+                            OnAlertButtonClick(button, callback);
                         }
                     });
                     break;
@@ -85,6 +78,12 @@ public class UseSample {
             }
         }
 
-        AlertDialog dialog = builder.show();
+        builder.show();
+    }
+
+    private static void OnAlertButtonClick(ButtonInfo button, final IUnityCallback callback) {
+        AlertDialogCloseInfo result = new AlertDialogCloseInfo();
+        result.m_ButtonId = button.m_Id;
+        UnityBridge.sendCallback(callback, result);
     }
 }

@@ -2,6 +2,7 @@ package com.stansassets.unity.android;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.StrictMode;
 
 import com.google.gson.Gson;
@@ -20,7 +21,7 @@ public class UnityBridge {
         AndroidLogger.log("Message Handler registered");
 
         if(sUnityMainThreadHandler == null) {
-            sUnityMainThreadHandler = new Handler();
+            sUnityMainThreadHandler = new Handler(Looper.getMainLooper());
         }
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -28,15 +29,11 @@ public class UnityBridge {
     }
 
     public static void sendCallback(final IUnityCallback callback, final Object src) {
-        sendCallback(callback, src, false);
-    }
-
-    public static void sendCallback(final IUnityCallback callback, final Object src, final boolean forceMainThread) {
         runOnUnityThread(new Runnable() {
             @Override
             public void run() {
                 String json = getGson().toJson(src);
-                callback.OnResult(json, forceMainThread);
+                callback.OnResult(json);
             }
         });
     }
@@ -51,10 +48,9 @@ public class UnityBridge {
 
     private  static  void printingStackTrace() {
         StackTraceElement[] elements = Thread.currentThread().getStackTrace();
-        for (int i = 1; i < elements.length; i++) {
-            StackTraceElement s = elements[i];
-            AndroidLogger.log("\tat " + s.getClassName() + "." + s.getMethodName()
-                    + "(" + s.getFileName() + ":" + s.getLineNumber() + ")");
+        for (StackTraceElement stackTraceElement : elements) {
+            AndroidLogger.log("\tat " + stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName()
+                    + "(" + stackTraceElement.getFileName() + ":" + stackTraceElement.getLineNumber() + ")");
         }
     }
 
