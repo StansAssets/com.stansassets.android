@@ -1,0 +1,92 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+From AN_Billing:
+* build.gradle
+* ic_launcher-web.png
+* proguard-project.txt
+From AN_GooglePlay:
+* build.gradle
+* ic_launcher-web.png
+* proguard-project.txt
+From AN_Social:
+* build.gradle
+* proguard-project.txt
+From AndroidNative:
+* ic_launcher-web.png
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:23.4.0
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+In AN_Billing:
+* AndroidManifest.xml => aN_Billing\src\main\AndroidManifest.xml
+* assets\ => aN_Billing\src\main\assets
+* libs\classes.jar => aN_Billing\libs\classes.jar
+* res\ => aN_Billing\src\main\res\
+* src\ => aN_Billing\src\main\java\
+* src\com\android\vending\billing\IInAppBillingService.aidl => aN_Billing\src\main\aidl\com\android\vending\billing\IInAppBillingService.aidl
+In AN_GooglePlay:
+* AndroidManifest.xml => aN_GooglePlay\src\main\AndroidManifest.xml
+* assets\ => aN_GooglePlay\src\main\assets
+* libs\bolts-android-1.1.4.jar => aN_GooglePlay\libs\bolts-android-1.1.4.jar
+* libs\classes.jar => aN_GooglePlay\libs\classes.jar
+* libs\google-play-services.jar => aN_GooglePlay\libs\google-play-services.jar
+* res\ => aN_GooglePlay\src\main\res\
+* src\ => aN_GooglePlay\src\main\java\
+In AN_Social:
+* AndroidManifest.xml => aN_Social\src\main\AndroidManifest.xml
+* assets\ => aN_Social\src\main\assets
+* libs\classes.jar => aN_Social\libs\classes.jar
+* libs\facebooksdk.jar => aN_Social\libs\facebooksdk.jar
+* libs\google-play-services.jar => aN_Social\libs\google-play-services.jar
+* libs\httpclient-4.3.1.jar => aN_Social\libs\httpclient-4.3.1.jar
+* libs\signpost-commonshttp4-1.2.1.2.jar => aN_Social\libs\signpost-commonshttp4-1.2.1.2.jar
+* libs\signpost-core-1.2.1.2.jar => aN_Social\libs\signpost-core-1.2.1.2.jar
+* libs\twitter4j-core-3.0.5.jar => aN_Social\libs\twitter4j-core-3.0.5.jar
+* res\ => aN_Social\src\main\res\
+* src\ => aN_Social\src\main\java\
+In AndroidNative:
+* AndroidManifest.xml => androidNative\src\main\AndroidManifest.xml
+* assets\ => androidNative\src\main\assets
+* libs\an_licensing_library.jar => androidNative\libs\an_licensing_library.jar
+* libs\classes.jar => androidNative\libs\classes.jar
+* libs\image-chooser-library-1.6.0.jar => androidNative\libs\image-chooser-library-1.6.0.jar
+* lint.xml => androidNative\lint.xml
+* res\ => androidNative\src\main\res\
+* src\ => androidNative\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
