@@ -10,8 +10,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      working-directory: com.stansassets.android
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
@@ -25,6 +23,6 @@ jobs:
     - run: yarn install
       
     # Publish to npm
-    - run: npm publish --access public
+    - run: npm publish com.stansassets.android --access public
       env:
         NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
