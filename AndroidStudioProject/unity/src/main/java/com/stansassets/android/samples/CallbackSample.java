@@ -10,7 +10,7 @@ public class CallbackSample {
         int m_IntData;
     }
 
-    public static void ModelCallbackSample(final IUnityCallback callback) {
+    public static void ModelCallbackSample(int x, int y, String name, final IUnityCallback callback) {
         CallbackDataSample dataSample = new CallbackDataSample();
 
         dataSample.m_StringData = "My String data";

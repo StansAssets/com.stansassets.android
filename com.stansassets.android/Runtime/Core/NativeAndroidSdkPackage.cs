@@ -8,11 +8,11 @@ namespace StansAssets.Android
         /// <summary>
         /// Native Android Sdk package full name.
         /// </summary>
-        public const string Name = "com.stansassets.unity.android";
+        public const string Name = "com.stansassets.android";
 
         /// <summary>
         /// Java library main namespace.
         /// </summary>
-        public const string JavaLibraryNamespace = "com.stansassets.unity.android";
+        public const string JavaLibraryNamespace = "com.stansassets.android";
     }
 }
