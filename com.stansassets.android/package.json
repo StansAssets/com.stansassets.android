@@ -1,0 +1,31 @@
+{
+  "name": "com.stansassets.unity.android",
+  "displayName": "Stans Assets - Android plugins Dev Kit",
+  "version": "1.0.0",
+  "unity": "2019.3",
+  "description": "Android plugins Dev Kit for Unity",
+  "dependencies": {
+    "com.stansassets.foundation": "1.0.1"
+  },
+  "keywords": [
+         "android",
+         "pattern",
+         "utility",
+         "unity",
+         "stansassets"
+     ],
+  "homepage": "https://api.stansassets.com/",
+  "bugs": {
+     "url": "https://github.com/StansAssets/com.stansassets.android/issues"
+   },
+  "repository": {
+      "type": "git",
+      "url": "ssh://git@github.com:StansAssets/com.stansassets.android.git"
+  },
+  "license": "MIT",
+  "author": {
+          "name": "Stan's Assets",
+          "email": "stan@stansassets.com",
+          "url": "https://stansassets.com/"
+  }
+}
