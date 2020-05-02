@@ -1,4 +1,4 @@
-# Android Native plugins Dev Kit for Unity
+# Android plugins Dev Kit for Unity
 At [Stan's Assets](https://stansassets.com/), we are making android native plugins for **Unity** for quite a while already. 
 Check out our most popular [Android Native Pro](https://github.com/StansAssets/com.stansassets.android-native) and [Ultimate Mobile Pro](https://github.com/StansAssets/com.stansassets.ultimate-mobile) plugins for the Android platfrom.
 
