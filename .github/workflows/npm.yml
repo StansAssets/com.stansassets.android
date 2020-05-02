@@ -25,5 +25,5 @@ jobs:
     # Publish to npm
     - run: npm publish --access public
       env:
-        working-directory: ./com.stansassets.android
+        working-directory: com.stansassets.android
         NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
