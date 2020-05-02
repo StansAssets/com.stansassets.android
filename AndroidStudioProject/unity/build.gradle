@@ -24,9 +24,9 @@ android {
 
 task copyAARToLibs(type: Copy) {
     from('build/outputs/aar')
-    into('../../com.stansassets.unity.android/Plugins/Android/')
+    into('../../com.stansassets.android/Plugins/Android/')
     include(project.name + '-release.aar')
-    rename(project.name + '-release.aar', 'com.stansassets.unity.android.aar')
+    rename(project.name + '-release.aar', 'com.stansassets.android.aar')
 }
 
 tasks.whenTaskAdded { task ->

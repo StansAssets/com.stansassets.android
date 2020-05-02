@@ -1,10 +1,9 @@
-package com.stansassets.unity.android;
+package com.stansassets.android;
 
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.StrictMode;
-
 import com.google.gson.Gson;
 import com.unity3d.player.UnityPlayer;
 

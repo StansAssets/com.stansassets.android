@@ -1,17 +1,17 @@
-package com.stansassets.unity.android.samples;
+package com.stansassets.android.samples;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.ContextThemeWrapper;
 
-import com.stansassets.unity.android.IUnityCallback;
-import com.stansassets.unity.android.UnityBridge;
+import com.stansassets.android.IUnityCallback;
+import com.stansassets.android.UnityBridge;
 
 import java.util.List;
 
 public class UseSample {
 
-    // Models should natch Unity code convention
+    // Models should match Unity code convention
 
     public class ButtonInfo {
         String m_Id;

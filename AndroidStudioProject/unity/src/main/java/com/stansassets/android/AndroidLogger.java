@@ -1,4 +1,4 @@
-package com.stansassets.unity.android;
+package com.stansassets.android;
 
 import android.util.Log;
 

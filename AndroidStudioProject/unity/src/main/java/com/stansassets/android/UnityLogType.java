@@ -1,4 +1,4 @@
-package com.stansassets.unity.android;
+package com.stansassets.android;
 
 public enum UnityLogType {
     INFO,
