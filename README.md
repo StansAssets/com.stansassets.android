@@ -3,6 +3,7 @@ At [Stan's Assets](https://stansassets.com/), we are making android native plugi
 Check out our most popular [Android Native Pro](https://github.com/StansAssets/com.stansassets.android-native) and [Ultimate Mobile Pro](https://github.com/StansAssets/com.stansassets.ultimate-mobile) plugins for the Android platfrom.
 
 [![NPM Package](https://img.shields.io/npm/v/com.stansassets.android)](https://www.npmjs.com/package/com.stansassets.android)
+[![openupm](https://img.shields.io/npm/v/com.stansassets.android?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.stansassets.android/)
 [![Licence](https://img.shields.io/npm/l/com.stansassets.android)](https://github.com/StansAssets/com.stansassets.android/blob/master/LICENSE)
 [![Issues](https://img.shields.io/github/issues/StansAssets/com.stansassets.android)](https://github.com/StansAssets/com.stansassets.android/issues)
 
@@ -14,7 +15,7 @@ Let us know if you need some specific features or you feel like something is mis
 * [Send image from the native code to Unity.](https://github.com/StansAssets/com.stansassest.unity.android/wiki/Send-image-from-the-native-code-to-Unity)
 * [AndroidLogger Utility.](https://github.com/StansAssets/com.stansassest.unity.android/wiki/AndroidLogger-Utility)
 
-## How to install
+## Install from NPM
 * Navigate to the `Packages` directory of your project.
 * Adjust the [project manifest file](https://docs.unity3d.com/Manual/upm-manifestPrj.html) `manifest.json` in a text editor.
 * Ensure `https://registry.npmjs.org/` is part of `scopedRegistries`.
@@ -40,3 +41,8 @@ A minimal example ends up looking like this. Please note that the version `X.Y.Z
   }
   ```
 * Switch back to the Unity software and wait for it to finish importing the added package.
+
+## Install from OpenUPM
+* Install openupm-cli `npm install -g openupm-cli` or `yarn global add openupm-cli`
+* Enter your unity project folder `cd <YOUR_UNITY_PROJECT_FOLDER>`
+* Install package `openupm add com.stansassets.android`
