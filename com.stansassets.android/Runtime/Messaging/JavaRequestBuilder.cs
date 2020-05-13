@@ -28,10 +28,12 @@ namespace StansAssets.Android
         /// Add method argument.
         /// </summary>
         /// <param name="arg">method argument</param>
-        public void AddArgument(object arg)
+        /// <returns>Current instance of the class</returns>
+        public JavaRequestBuilder AddArgument(object arg)
         {
             var convertedArg =  Java.ConvertObjectData(arg);
             m_Arguments.Add(convertedArg);
+            return this;
         }
 
         /// <summary>
@@ -39,9 +41,11 @@ namespace StansAssets.Android
         /// </summary>
         /// <param name="callback">Action callback.</param>
         /// <typeparam name="T">Action generic type.</typeparam>
-        public void AddAction<T>(Action<T> callback)
+        /// <returns>Current instance of the class</returns>
+        public JavaRequestBuilder AddAction<T>(Action<T> callback)
         {
             m_Arguments.Add(JavaCallback.ActionToJavaObject(callback));
+            return this;
         }
 
         /// <summary>
