@@ -1,11 +1,12 @@
 {
   "name": "com.stansassets.android",
   "displayName": "Stans Assets - Android plugins Dev Kit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "unity": "2019.3",
   "description": "Android plugins Dev Kit for Unity",
   "dependencies": {
-    "com.stansassets.foundation": "1.0.2"
+    "com.stansassets.foundation": "1.0.4",
+    "com.unity.modules.androidjni": "1.0.0"
   },
   "keywords": [
          "android",
