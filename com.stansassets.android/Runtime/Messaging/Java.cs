@@ -7,7 +7,15 @@ namespace StansAssets.Android
 {
     static class Java
     {
+        const string k_UnityBridgeTypeName = "com.stansassets.android.UnityBridge";
         static readonly Dictionary<string, AndroidJavaClass> s_Classes = new Dictionary<string, AndroidJavaClass>();
+
+        [RuntimeInitializeOnLoadMethodAttribute]
+        static void RegisterMessageHandler()
+        {
+            var request = new JavaRequestBuilder(k_UnityBridgeTypeName, "registerMessageHandler");
+            request.Invoke();
+        }
 
         /// <summary>
         /// Get Java class reference using fully qualified class name.
@@ -19,7 +27,8 @@ namespace StansAssets.Android
             if (Application.isEditor)
                 return null;
 
-            if (s_Classes.ContainsKey(javaClassName)) {
+            if (s_Classes.ContainsKey(javaClassName))
+            {
                 return s_Classes[javaClassName];
             }
 
@@ -33,7 +42,8 @@ namespace StansAssets.Android
 
         internal static object ConvertObjectData(object param)
         {
-            switch (param) {
+            switch (param)
+            {
                 case string _:
                     return param.ToString();
                 case Enum _:

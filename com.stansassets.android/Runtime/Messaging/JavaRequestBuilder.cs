@@ -9,18 +9,18 @@ namespace StansAssets.Android
     /// </summary>
     public class JavaRequestBuilder
     {
-        readonly string m_ClassName;
+        readonly string m_TypeName;
         readonly string m_MethodName;
         readonly List<object> m_Arguments = new List<object>();
 
         /// <summary>
         /// Constructs a new <see cref="JavaRequestBuilder"/> instance.
         /// </summary>
-        /// <param name="className">Fully qualified java class name.</param>
+        /// <param name="typeName">Fully qualified java class name.</param>
         /// <param name="methodName">Method name.</param>
-        public JavaRequestBuilder(string className, string methodName)
+        public JavaRequestBuilder(string typeName, string methodName)
         {
-            m_ClassName = className;
+            m_TypeName = typeName;
             m_MethodName = methodName;
         }
 
@@ -53,11 +53,11 @@ namespace StansAssets.Android
         /// </summary>
         public void Invoke()
         {
-            AndroidLogger.LogJavaMethodCall(m_ClassName, m_MethodName, m_Arguments);
+            AndroidLogger.LogJavaMethodCall(m_TypeName, m_MethodName, m_Arguments);
             if (Application.isEditor)
                 return;
 
-            var javaClass =  Java.GetJavaClass(m_ClassName);
+            var javaClass =  Java.GetJavaClass(m_TypeName);
             javaClass.CallStatic(m_MethodName, m_Arguments.ToArray());
         }
 
@@ -68,11 +68,11 @@ namespace StansAssets.Android
         /// <returns>Native method result.</returns>
         public TR Invoke<TR>()
         {
-            AndroidLogger.LogJavaMethodCall(m_ClassName, m_MethodName, m_Arguments);
+            AndroidLogger.LogJavaMethodCall(m_TypeName, m_MethodName, m_Arguments);
             if (Application.isEditor)
                 return default;
 
-            var javaClass =  Java.GetJavaClass(m_ClassName);
+            var javaClass =  Java.GetJavaClass(m_TypeName);
             if ( Java.IsPrimitive(typeof(TR)))
             {
                 var result =  javaClass.CallStatic<TR>(m_MethodName, m_Arguments.ToArray());
