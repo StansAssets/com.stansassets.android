@@ -10,12 +10,13 @@ public class CallbackSample {
         int m_IntData;
     }
 
-    public static void ModelCallbackSample(int x, int y, String name, final IUnityCallback callback) {
+    public static void modelCallbackSample(int x, int y, String name, final IUnityCallback callback) {
         CallbackDataSample dataSample = new CallbackDataSample();
 
         dataSample.m_StringData = "My String data";
         dataSample.m_IntData = 100;
 
+        UnityBridge.registerMessageHandler();
         UnityBridge.sendCallback(callback, dataSample);
     }
 }
