@@ -3,7 +3,7 @@ package com.stansassets.android;
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.StrictMode;
+
 import com.google.gson.Gson;
 import com.unity3d.player.UnityPlayer;
 
@@ -16,19 +16,8 @@ public class UnityBridge {
         return UnityPlayer.currentActivity;
     }
 
-    public static void registerMessageHandler() {
-        AndroidLogger.log("Message Handler registered");
-
-        if(sUnityMainThreadHandler == null) {
-            sUnityMainThreadHandler = new Handler(Looper.getMainLooper());
-        }
-
-        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-        StrictMode.setVmPolicy(builder.build());
-    }
-
-    public static void sendCallback(final IUnityCallback callback, final Object src) {
-        runOnUnityThread(new Runnable() {
+    public static synchronized void sendCallback(final IUnityCallback callback, final Object src) {
+        getUnityMainThreadHandler().post(new Runnable() {
             @Override
             public void run() {
                 String json = getGson().toJson(src);
@@ -45,7 +34,7 @@ public class UnityBridge {
         return getGson().fromJson(json, classOfT);
     }
 
-    private  static  void printingStackTrace() {
+    public static void printingStackTrace() {
         StackTraceElement[] elements = Thread.currentThread().getStackTrace();
         for (StackTraceElement stackTraceElement : elements) {
             AndroidLogger.log("\tat " + stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName()
@@ -53,22 +42,17 @@ public class UnityBridge {
         }
     }
 
-    private static void runOnUnityThread(Runnable runnable) {
-        if(sUnityMainThreadHandler != null && runnable != null) {
-            try {
-                if(sUnityMainThreadHandler.getLooper().getThread().isAlive()) {
-                    sUnityMainThreadHandler.post(runnable);
-                }
-            } catch (Exception ex) {
-                AndroidLogger.log("Can't post on a unityMainThreadHandler");
-            }
+    private static Handler getUnityMainThreadHandler() {
+        if (sUnityMainThreadHandler == null) {
+            sUnityMainThreadHandler = new Handler(Looper.getMainLooper());
         }
+        return sUnityMainThreadHandler;
     }
 
     private static Gson getGson() {
-        if(sGson == null) {
+        if (sGson == null) {
             sGson = new Gson();
         }
-        return  sGson;
+        return sGson;
     }
 }
